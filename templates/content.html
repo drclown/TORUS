@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}
+ {% include "nav_search.html" %}
+<h1 class="pull-left">Recherche</h1>
+<a href="/stop" name="stop" class="btn btn-default pull-right">
+    <span class="glyphicon glyphicon-stop"></span>
+</a>
+<table class="table table-bordered">
+    <tbody>
+    {% for video in list_video %}
+        <tr class="row">
+            <td class="col-lg-1"><img src="" style="width:100%"/></td>
+            <td class="col-lg-1"><p>{{video.id}}</p></td>
+            <td class="col-lg-8"><p>{{video.name}}</p></td>
+            <td class="col-lg-1">
+                <button id={{video.id}} name="play" label="{{video.name}}" style="width:100%;height:100%">
+                    <span class="glyphicon glyphicon-play-circle" />
+                </button>
+            </td>
+            <td class="col-lg-1">
+                <a href="http://www.t411.in/torrents/download/?id={{ video.id }}" >lien</a>
+            </td>
+        </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+<script>
+    <!-- play video (torrent) event -->
+    $('button[name="play"]').click(function() {
+        var label = $(this).attr('label');
+        $('span[name="current_play"]').text(label);
+        $.getJSON( "/play", {id:$(this).attr('id')});
+    });
+    $('button[name="stop"]').click(function() {
+        $('span[name="current_play"]').text('');
+        $.getJSON( "/stop");
+    });
+</script>
+
+{% endblock %}

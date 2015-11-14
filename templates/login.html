@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>{{ token }}</h1>
+<form class="form-horizontal" method="post">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Connexion</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="login">Login</label>
+            <div class="col-md-4">
+                <input id="login" name="login" placeholder="" class="form-control input-md" type="text" />
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" placeholder="" class="form-control input-md" type="password">
+                {{ message }}
+            </div>
+        </div>
+
+
+        <!-- Button -->
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="connexion" />
+        </div>
+
+    </fieldset>
+</form>
+{% endblock %}
